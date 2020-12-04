@@ -1,0 +1,102 @@
+esphome:
+  name: esp_bed_controller
+  platform: ESP32
+  board: esp-wrover-kit
+  includes:
+    - ESPBedController.h
+    - cc2500_REG.h
+    - cc2500_VAL.h
+    
+
+wifi:
+  ssid: "!secret"
+  password: "!secret"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Espbedcontroller"
+    password: "7rzpbr8rMqjV"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+output:
+  - platform: gpio
+    pin: 27
+    id: gpio_d27
+  - platform: gpio
+    pin: 15
+    id: gpio_light
+
+spi:
+  clk_pin: GPIO12
+  mosi_pin: GPIO13
+  miso_pin: GPIO14
+  
+ota:
+
+switch:
+  - platform: custom
+    lambda: |-
+     
+      auto bedCtrlOn = new BedSwitch_On();
+      App.register_component(bedCtrlOn);
+      return {bedCtrlOn};
+    switches:
+      name: "Bed_Control_On"
+  - platform: custom
+    lambda: |-
+      auto bedCtrlOff = new BedSwitch_Off();
+      App.register_component(bedCtrlOff);
+      return {bedCtrlOff};
+    switches:
+      name: "Bed_Control_Off"
+      
+  - platform: custom
+    lambda: |-
+      auto bedCtrlTVPC = new BedSwitch_TVPC();
+      App.register_component(bedCtrlTVPC);
+      return {bedCtrlTVPC};
+    switches:
+      name: "Bed_Control_TVPC"
+  - platform: custom
+    lambda: |-
+      auto bedCtrlZeroG = new BedSwitch_ZeroG();
+      App.register_component(bedCtrlZeroG);
+      return {bedCtrlZeroG};
+    switches:
+      name: "Bed_Control_ZeroG"
+  
+  - platform: custom
+    lambda: |-
+      auto bedCtrlHeadUp = new BedSwitch_HeadUp();
+      App.register_component(bedCtrlHeadUp);
+      return {bedCtrlHeadUp};
+    switches:
+      name: "Bed_Control_HeadUp"
+  - platform: custom
+    lambda: |-
+      auto bedCtrlHeadDown = new BedSwitch_HeadDown();
+      App.register_component(bedCtrlHeadDown);
+      return {bedCtrlHeadDown};
+    switches:
+      name: "Bed_Control_HeadDown"
+  - platform: custom
+    lambda: |-
+      auto bedCtrlFootUp = new BedSwitch_FootUp();
+      App.register_component(bedCtrlFootUp);
+      return {bedCtrlFootUp};
+    switches:
+      name: "Bed_Control_FootUp"
+  - platform: custom
+    lambda: |-
+      auto bedCtrlFootDown = new BedSwitch_FootDown();
+      App.register_component(bedCtrlFootDown);
+      return {bedCtrlFootDown};
+    switches:
+      name: "Bed_Control_FootDown"       
