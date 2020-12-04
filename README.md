@@ -45,6 +45,6 @@ https://github.com/jlboygenius/SmartThingsSertaBedControl
 If you would prefer to use the controller over MQTT, check out: https://github.com/kyfalcon/SmartThingsSertaBedControl
 
 
-
+![Switches in Home Assistant](ESPBedControl.png)
  
 
