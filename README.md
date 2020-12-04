@@ -14,24 +14,29 @@ Software Installation:
 
 3: Upload the ESPBedController.h to the /config/esphome directory
 
-4: Edit the YAML and paste in the ESPBedController.yaml code
+4: Edit the YAML and paste in the ESPBedController.yaml code. (Make sure to update for your board type, platform, and wifi credentials)
 
 5: Upload!
 
 Hardware:
-You'll need a CC2500 chip. (CC2500 IC Wireless RF Transceiver 2.4G Module). These are available on ebay and amazon for a few dollars. They are small, so be good at soldering. If there is no PCB antenna, you can attach a short (2inch) peice of wire to the antenna hole.
+You'll need a CC2500 chip. (CC2500 IC Wireless RF Transceiver 2.4G Module). These are available on ebay and amazon for a few dollars. They are small, so you'll need to be good at soldering. If there is no PCB antenna, you can attach a short (2inch) peice of wire to the antenna hole.
 Attach to ESP32. SPI Pins are defined in the ESPBedController.h file:
 
-#define SCK_PIN 12
+SCK_PIN 12
 
-#define MISO_PIN 14
+MISO_PIN 14
 
-#define MOSI_PIN 13
+MOSI_PIN 13
 
-#define CS_PIN 27
+CS_PIN 27
+
+3.3V
+
+Ground
 
 
-This code will setup 8 switches in Home Assistant. These turning on each switch will send the command. The switches turn themselves off when the command is complete. 
+
+This project will setup 8 switches in Home Assistant. Turning on each switch will send the command. The switches turn themselves off when the command is complete. 
 
 
 For a more complete explaination of how this works and what controls are supported check out my previous project:
